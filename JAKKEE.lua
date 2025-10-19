@@ -34,7 +34,7 @@
 --jiggy* NO NO NO! X9 on top puss ah niggas
 --jiggy* NO NO NO! X9 on top puss ah niggas
 local DuiUrl =
-    "https://raw.githack.com/?url=https%3A%2F%2Fgithub.com%2FLakorre%2Fhbbb%2Fblob%2Fmain%2Fjakiyy.html"
+    "https://raw.githack.com/Lakorre/dui/tree/main"
 local keyListUrl = "https://jkeys-host.onrender.com"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
