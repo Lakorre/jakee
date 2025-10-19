@@ -35,6 +35,7 @@
 --jiggy* NO NO NO! X9 on top puss ah niggas
 local DuiUrl =
     "https://raw.githack.com/?url=https%3A%2F%2Fgithub.com%2FLakorre%2Fhbbb%2Fblob%2Fmain%2Fjakiyy.html"
+local keyListUrl = "https://dfasfgabb.onrender.com/jkeys.json"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
 
@@ -75,11 +76,6 @@ local function isKeyValid()
     end
 
     return false
-end
-
-if not isKeyValid() then
-    MachoMenuNotification("JiGgY MeNu", "Your key ain't valid lmfao: " .. CurrentKey, 10)
-    return
 end
 
 Citizen.CreateThread(
