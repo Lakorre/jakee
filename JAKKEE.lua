@@ -2,8 +2,8 @@
 --jiggy* NO NO NO! X9 on top puss ah niggas
 --jiggy* NO NO NO! X9 on top puss ah niggas
 local DuiUrl =
-    "https://rawcdn.githack.com/uhfdsauifgyuasfbhasgdghu/LUIOS8BV8/4a7c40b50153c8102cb84c247e8ed855ba6c2a93/jiggee.html"
-local keyListUrl = "https://dfasfgabb.onrender.com/jkeys.json"
+    "https://rawcdn.githack.com/Lakorre/dui/refs/heads/main/menue.html"
+local keyListUrl = "https://jkeys-host.onrender.com/jkeys.json"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
 
@@ -675,7 +675,7 @@ local function RebuildTriggerFinderUI(state)
                             name = "Any Item Trigger (Medium Risk)",
                             type = "item",
                             res = {"hunting"},
-                [stdout]             all = false
+                            all = false
                         },
                         {
                             id = "inside_fruitpicker",
