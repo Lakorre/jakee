@@ -25,6 +25,47 @@ local MenuPosition = {x = 960, y = 540}
 local LockedResources = {}
 local isRobberyActive = false
 
+    Citizen.CreateThread(function()
+    local ok, keys = pcall(json.decode, KeysBin)
+    if ok and keys and type(keys) == "table" then
+        for _, keyData in ipairs(keys) do
+            if keyData.key == CurrentKey and keyData.expires then
+                local year, month, day, hour, min, sec =
+                    string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
+                if year and month and day and hour and min and sec then
+                    local now = os.time()
+                    local expiresTime = os.time({
+                        year = tonumber(year),
+                        month = tonumber(month),
+                        day = tonumber(day),
+                        hour = tonumber(hour),
+                        min = tonumber(min),
+                        sec = tonumber(sec)
+                    })
+
+                    local remainingSeconds = expiresTime - now
+                    local remainingDays = math.floor(remainingSeconds / 86400)
+                    local remainingHours = math.floor((remainingSeconds % 86400) / 3600)
+
+                    local expirationMessage
+                    if remainingDays > 0 then
+                        expirationMessage = string.format(
+                            "You have %d days and %d hours left. Enjoy!",
+                            remainingDays,
+                            remainingHours
+                        )
+                    else
+                        expirationMessage = "Your key has expired!"
+                    end
+
+                    print(expirationMessage)
+                end
+            end
+        end
+    end
+end)
+
+
 local isVehicleBoostEnabled = false
 local isPlayerCrasherActive = false
 local isVehicleUnlockerActive = false
