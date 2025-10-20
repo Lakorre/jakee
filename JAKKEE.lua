@@ -26,6 +26,44 @@ local function isKeyValid()
                     string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
                 if year and month and day and hour and min and sec then
                     local expiresTime =
+                        os.time({
+                            year = tonumber(year),
+                            month = tonumber(month),
+                            day = tonumber(day),
+                            hour = tonumber(hour),
+                            min = tonumber(min),
+                            sec = tonumber(sec)
+                        })
+                    if expiresTime > now then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+
+local function isKeyValid()
+    if not KeysBin then
+        return false
+    end
+
+    local ok, keys = pcall(json.decode, KeysBin)
+    if not ok or not keys or type(keys) ~= "table" then
+        return false
+    end
+
+    local now = os.time()
+    for _, keyData in ipairs(keys) do
+        if keyData.key == CurrentKey then
+            if keyData.expires then
+                local year, month, day, hour, min, sec =
+                    string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
+                if year and month and day and hour and min and sec then
+                    local expiresTime =
                         os.time(
                         {
                             year = tonumber(year),
