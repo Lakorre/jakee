@@ -1,12 +1,9 @@
-
---jiggy* NO NO NO! X9 on top puss ah niggas
---jiggy* NO NO NO! X9 on top puss ah niggas
-local DuiUrl =
-    "https://rawcdn.githack.com/Lakorre/dui/refs/heads/main/menue.html"
+local DuiUrl = "https://rawcdn.githack.com/Lakorre/dui/refs/heads/main/menue.html"
 local keyListUrl = "https://jkeys-host.onrender.com/jkeys.json"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
 
+-- دالة التحقق من المفاتيح
 local function isKeyValid()
     if not KeysBin then
         return false
@@ -17,6 +14,10 @@ local function isKeyValid()
         return false
     end
 
+    return true
+end
+
+-- إعدادات المنيو
 local Dui = MachoCreateDui(DuiUrl)
 local MenuOpen = false
 local isTyping = false
@@ -25,13 +26,15 @@ local MenuPosition = {x = 960, y = 540}
 local LockedResources = {}
 local isRobberyActive = false
 
- Citizen.CreateThread(function()
+-- التحقق من انتهاء صلاحية المفتاح
+Citizen.CreateThread(function()
     local ok, keys = pcall(json.decode, KeysBin)
     if ok and keys and type(keys) == "table" then
         for _, keyData in ipairs(keys) do
             if keyData.key == CurrentKey and keyData.expires then
                 local year, month, day, hour, min, sec =
                     string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
+
                 if year and month and day and hour and min and sec then
                     local now = os.time()
                     local expireTime = os.time({
@@ -64,8 +67,6 @@ local isRobberyActive = false
         end
     end
 end)
-
-
 
 local isVehicleBoostEnabled = false
 local isPlayerCrasherActive = false
