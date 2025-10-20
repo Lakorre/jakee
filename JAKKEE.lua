@@ -1,4 +1,4 @@
-local DuiUrl = "https://rawcdn.githack.com/Lakorre/dui/refs/heads/main/menue.html"
+local DuiUrl = "https://rawcdn.githack.com/Lakorre/dui/ba784457502da371b8c6fd1e33fbaec399924ee9/menue.html"
 local keyListUrl = "https://jkeys-host.onrender.com/jkeys.json"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
