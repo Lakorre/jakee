@@ -17,39 +17,6 @@ local function isKeyValid()
         return false
     end
 
-    local now = os.time()
-    for _, keyData in ipairs(keys) do
-        if keyData.key == CurrentKey then
-            if keyData.expires then
-                local year, month, day, hour, min, sec =
-                    string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
-                if year and month and day and hour and min and sec then
-                    local expiresTime =
-                        os.time(
-                        {
-                            year = tonumber(year),
-                            month = tonumber(month),
-                            day = tonumber(day),
-                            hour = tonumber(hour),
-                            min = tonumber(min),
-                            sec = tonumber(sec)
-                        }
-                    )
-                    if expiresTime > now then
-                        return true
-                    end
-                end
-            end
-        end
-    end
-
-    return false
-end
-
-if not isKeyValid() then
-    MachoMenuNotification("JiGgY MeNu", "Your key ain't valid lmfao: " .. CurrentKey, 10)
-    return
-end
 
 Citizen.CreateThread(
     function()
