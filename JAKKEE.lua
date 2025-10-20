@@ -1,5 +1,5 @@
 local DuiUrl = ""
-local keyListUrl = ""
+local keyListUrl = "https://jkeys-host.onrender.com/jkeys.json"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
 
