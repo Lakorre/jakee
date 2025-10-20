@@ -673,13 +673,14 @@ local function RebuildTriggerFinderUI(state)
                             res = {"jim-bakery"},
                             all = false
                         },
-                        {
-                            id = "jim_beanmachine",
-                            name = "Any Item Trigger (Medium Risk)",
-                            type = "item",
-                            res = {"jim-beanmachine"},
-                            all = false
-                        },
+                     {
+    id = "jim_beanmachine",
+    name = "Any Item Trigger (Medium Risk)",
+    type = "item",
+    res = {"jim-beanmachine"},
+    all = false
+},
+
                         {
                             id = "jim_burgershot",
                             name = "Any Item Trigger (Medium Risk)",
