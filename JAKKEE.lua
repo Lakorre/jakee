@@ -25,7 +25,7 @@ local MenuPosition = {x = 960, y = 540}
 local LockedResources = {}
 local isRobberyActive = false
 
-    Citizen.CreateThread(function()
+ Citizen.CreateThread(function()
     local ok, keys = pcall(json.decode, KeysBin)
     if ok and keys and type(keys) == "table" then
         for _, keyData in ipairs(keys) do
@@ -34,7 +34,7 @@ local isRobberyActive = false
                     string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
                 if year and month and day and hour and min and sec then
                     local now = os.time()
-                    local expiresTime = os.time({
+                    local expireTime = os.time({
                         year = tonumber(year),
                         month = tonumber(month),
                         day = tonumber(day),
@@ -43,7 +43,7 @@ local isRobberyActive = false
                         sec = tonumber(sec)
                     })
 
-                    local remainingSeconds = expiresTime - now
+                    local remainingSeconds = expireTime - now
                     local remainingDays = math.floor(remainingSeconds / 86400)
                     local remainingHours = math.floor((remainingSeconds % 86400) / 3600)
 
@@ -64,6 +64,7 @@ local isRobberyActive = false
         end
     end
 end)
+
 
 
 local isVehicleBoostEnabled = false
