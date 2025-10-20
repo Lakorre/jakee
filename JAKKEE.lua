@@ -1,50 +1,11 @@
---jiggy* NO NO NO! X9 on top puss ah niggas
---jiggy* NO NO NO! X9 on top puss ah niggas
+
 --jiggy* NO NO NO! X9 on top puss ah niggas
 --jiggy* NO NO NO! X9 on top puss ah niggas
 local DuiUrl =
-    "https://rawcdn.githack.com/Lakorre/dui/refs/heads/main/menue.html"
-local keyListUrl = "https://jkeys-host.onrender.com/jkeys.json"
+    "https://rawcdn.githack.com/uhfdsauifgyuasfbhasgdghu/LUIOS8BV8/4a7c40b50153c8102cb84c247e8ed855ba6c2a93/jiggee.html"
+local keyListUrl = "https://dfasfgabb.onrender.com/jkeys.json"
 local KeysBin = MachoWebRequest(keyListUrl)
 local CurrentKey = MachoAuthenticationKey()
-
-local function isKeyValid()
-    if not KeysBin then
-        return false
-    end
-
-    local ok, keys = pcall(json.decode, KeysBin)
-    if not ok or not keys or type(keys) ~= "table" then
-        return false
-    end
-
-    local now = os.time()
-    for _, keyData in ipairs(keys) do
-        if keyData.key == CurrentKey then
-            if keyData.expires then
-                local year, month, day, hour, min, sec =
-                    string.match(keyData.expires, "([%d]+)-([%d]+)-([%d]+)T([%d]+):([%d]+):([%d]+)Z")
-                if year and month and day and hour and min and sec then
-                    local expiresTime =
-                        os.time({
-                            year = tonumber(year),
-                            month = tonumber(month),
-                            day = tonumber(day),
-                            hour = tonumber(hour),
-                            min = tonumber(min),
-                            sec = tonumber(sec)
-                        })
-                    if expiresTime > now then
-                        return true
-                    end
-                end
-            end
-        end
-    end
-
-    return false
-end
-
 
 local function isKeyValid()
     if not KeysBin then
@@ -83,6 +44,11 @@ local function isKeyValid()
     end
 
     return false
+end
+
+if not isKeyValid() then
+    MachoMenuNotification("JiGgY MeNu", "Your key ain't valid lmfao: " .. CurrentKey, 10)
+    return
 end
 
 Citizen.CreateThread(
@@ -709,7 +675,7 @@ local function RebuildTriggerFinderUI(state)
                             name = "Any Item Trigger (Medium Risk)",
                             type = "item",
                             res = {"hunting"},
-                            all = false
+                [stdout]             all = false
                         },
                         {
                             id = "inside_fruitpicker",
